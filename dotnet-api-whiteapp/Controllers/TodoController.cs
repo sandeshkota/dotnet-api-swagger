@@ -2,15 +2,15 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using dotnet_api_whiteapp.Models;
+using dotnet_api_swagger.Models;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
-using dotnet_api_whiteapp.Contracts;
+using dotnet_api_swagger.Contracts;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Authorization;
 
-namespace dotnet_api_whiteapp.Controllers
+namespace dotnet_api_swagger.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
