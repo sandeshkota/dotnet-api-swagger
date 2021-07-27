@@ -1,11 +1,11 @@
-using dotnet_api_whiteapp.Swagger;
+using dotnet_api_swagger.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace dotnet_api_whiteapp
+namespace dotnet_api_swagger
 {
     public class Startup
     {

@@ -8,7 +8,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace dotnet_api_whiteapp.Swagger
+namespace dotnet_api_swagger.Swagger
 {
     public static class SwaggerConfiguration
     {

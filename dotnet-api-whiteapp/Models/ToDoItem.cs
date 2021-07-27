@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace dotnet_api_whiteapp.Models
+namespace dotnet_api_swagger.Models
 {
     [SwaggerSchema(Required = new[] { "Title" })]
     public class ToDoItem

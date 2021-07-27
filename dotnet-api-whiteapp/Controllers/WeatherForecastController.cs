@@ -3,11 +3,11 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using dotnet_api_whiteapp.Models;
+using dotnet_api_swagger.Models;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace dotnet_api_whiteapp.Controllers
+namespace dotnet_api_swagger.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
