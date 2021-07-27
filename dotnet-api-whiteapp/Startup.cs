@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using dotnet_api_whiteapp.Redoc;
 
 namespace dotnet_api_swagger
 {
@@ -33,6 +34,7 @@ namespace dotnet_api_swagger
 
             // Configure Swagger and SwaggerUI
             SwaggerConfiguration.UseSwagger(app);
+            RedocConfiguration.UseRedoc(app);
             
             if (env.IsDevelopment())
             {
