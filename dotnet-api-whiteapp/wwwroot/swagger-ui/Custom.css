@@ -6,3 +6,7 @@
 .swagger-ui .info .info__contact > div {
     margin: 0 0 5px;
 }
+
+.swagger-ui .scheme-container {
+    padding: 20px 0;
+}

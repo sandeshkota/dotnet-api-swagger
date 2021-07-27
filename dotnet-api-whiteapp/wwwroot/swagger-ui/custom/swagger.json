@@ -1,0 +1,440 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "[Hardcoded] Weather Forecast Application",
+    "description": "[Hardcoded] Sample Weather Forecast application",
+    "contact": {
+      "name": "Kota",
+      "email": "sandeshjkota@gmail.com"
+    },
+    "version": "custom"
+  },
+  "paths": {
+    "/api/Todo": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "[Hardcoded] Gets All Todo Items",
+        "description": "Returns All ToDo Items that are created",
+        "responses": {
+          "200": {
+            "description": "[Hardcoded] Loaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ToDoItem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "[Hardcoded] Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorContract"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Todo/{id}": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "[Hardcoded] Retrieves a specific todo item by unique id",
+        "description": "Awesomeness!",
+        "operationId": "GetTodoItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Todo Item id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 123
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo Item returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToDoItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Todo item has missing/invalid values",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorContract"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Oops! Can't get todo item right now"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Todo",
+          "Obsolete"
+        ],
+        "summary": "[Hardcoded] Deletes Todo Item",
+        "description": "Delete a Todo Item",
+        "operationId": "DeleteTodoItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/Todo/CreateTodoItem": {
+      "post": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "[Hardcoded] Creates a todo item",
+        "description": "Create a Todo Item",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "title"
+                ],
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "date": {
+                  "style": "form"
+                },
+                "title": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Saved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToDoItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorContract"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WeatherForecast/GetAllWeatherForecasts": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "summary": "[Hardcoded] Gets all the Weather Forecast details.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the item is null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WeatherForecast/GetWeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "summary": "[Hardcoded] Gets a Weather Forecast item.",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "weather forecast for a date (YYYY-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Weather forecast item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherForecast"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the item is null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WeatherForecast/CreateWeatherForecast": {
+      "post": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "summary": "[Hardcoded] Saves the weather forecast details.",
+        "description": "Sample request:\r\n\r\n    POST /api/WeatherForecast/CreateWeatherForecast\r\n    {\r\n       \"Date\": \"2021-07-28T18:48:41.0294769+05:30\",\r\n       \"TemperatureC\": 16,\r\n       \"Summary\": \"Freezing\"\r\n    }",
+        "requestBody": {
+          "description": "weather forecast details to save",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherForecast"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherForecast"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherForecast"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the newly created item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherForecast"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the item is null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorContract": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      },
+      "ToDoItem": {
+        "required": [
+          "Title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "required": [
+              "...",
+              "0",
+              "1",
+              "100",
+              "2",
+              "3"
+            ],
+            "type": "integer",
+            "description": "[Hardcoded] The Id for the Todo item",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "description": "[Hardcoded] The date for the Todo item",
+            "format": "date"
+          },
+          "title": {
+            "title": "Todo-item-title",
+            "type": "string",
+            "description": "[Hardcoded] The title for the Todo item",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "required": [
+          "date"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "[Hardcoded] The Date of the Weather Forecast",
+            "format": "date-time",
+            "example": "2021-07-27"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "description": "[Hardcoded] The Temperature (in celsius) of the Weather Forecast",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "description": "[Hardcoded] The Temperature in Fahrenheit (calculated)",
+            "format": "int32",
+            "readOnly": true,
+            "deprecated": true
+          },
+          "summary": {
+            "type": "string",
+            "description": "[Hardcoded] The summary of the Weather Forecast",
+            "default": "normal",
+            "nullable": true,
+            "example": "warm"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "/auth-server/connect/authorize",
+            "scopes": {
+              "readAccess": "[Hardcoded] Access read operations",
+              "writeAccess": "[Hardcoded] Access write operations"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Todo",
+      "description": "[Hardcoded] Create, read, update and delete Todo Items"
+    }
+  ]
+}
