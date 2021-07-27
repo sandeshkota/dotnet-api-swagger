@@ -1,7 +1,7 @@
+using dotnet_api_whiteapp.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using dotnet_api_whiteapp.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,14 +29,11 @@ namespace dotnet_api_whiteapp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Configure Swagger and SwaggerUI
             app.UseStaticFiles();
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.InjectStylesheet("/swagger-ui/custom.css");
-            });
 
+            // Configure Swagger and SwaggerUI
+            SwaggerConfiguration.UseSwagger(app);
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

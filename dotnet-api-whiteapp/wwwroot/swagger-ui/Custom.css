@@ -1,3 +1,8 @@
-﻿.swagger-ui .info .info__contact > div {
+﻿
+.swagger-ui .info {
+    margin: 20px 0;
+}
+
+.swagger-ui .info .info__contact > div {
     margin: 0 0 5px;
 }

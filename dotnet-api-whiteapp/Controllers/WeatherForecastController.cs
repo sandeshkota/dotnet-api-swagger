@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using dotnet_api_whiteapp.Models;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace dotnet_api_whiteapp.Controllers
 {
@@ -57,7 +58,7 @@ namespace dotnet_api_whiteapp.Controllers
         [HttpGet("GetWeatherForecast")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<WeatherForecast> Get(DateTime date)
+        public ActionResult<WeatherForecast> Get([FromQuery, SwaggerParameter("Weather forecast date", Required = true)] DateTime date)
         {
             var rng = new Random();
             var forecast = new WeatherForecast
@@ -80,7 +81,6 @@ namespace dotnet_api_whiteapp.Controllers
         ///     {
         ///        "Date": "2021-07-28T18:48:41.0294769+05:30",
         ///        "TemperatureC": 16,
-        ///        "TemperatureF": 60,
         ///        "Summary": "Freezing"
         ///     }
         ///     
@@ -92,7 +92,8 @@ namespace dotnet_api_whiteapp.Controllers
         [HttpPost("CreateWeatherForecast")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<WeatherForecast> Post(WeatherForecast weatherForecast)
+        //[Authorize]
+        public ActionResult<WeatherForecast> Post([FromBody] WeatherForecast weatherForecast)
         {
             return Ok(new WeatherForecast());
         }
