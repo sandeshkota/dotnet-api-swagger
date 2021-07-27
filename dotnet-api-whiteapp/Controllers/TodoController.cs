@@ -54,10 +54,14 @@ namespace dotnet_api_swagger.Controllers
         [HttpGet("{id}", Name = "GetTodoItem")]
         [SwaggerOperation(Summary = "Gets All Todo Items", Description = "Load Todo Items by Id", Tags = new string[] { "Todo" })]
         [ProducesResponseType(typeof(ToDoItem), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorContract), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorContract), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(500)]
         public ActionResult<ToDoItem> Get(int id)
         {
+            if (id >= 0)
+                return NotFound();
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -81,13 +85,13 @@ namespace dotnet_api_swagger.Controllers
         [HttpPost("CreateTodoItem")]
         [ApiExplorerSettings(GroupName = "v1")]
         [SwaggerOperation(Summary = "Saves Todo Item", Description = "Create a Todo Item", Tags = new string[] { "Todo" })]
-        [SwaggerResponse(StatusCodes.Status200OK, "Saved successfully", typeof(ToDoItem))]
+        [SwaggerResponse(StatusCodes.Status201Created, "Created successfully", typeof(ToDoItem))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Bad Request", typeof(ErrorContract))]
         public ActionResult<ToDoItem> Post([FromForm]DateTime date, [FromForm, BindRequired] string title)
         {
             var rng = new Random();
             var todoItem = new ToDoItem { Id = rng.Next(0, 10), Date = date, Title = title };
-            return Ok(todoItem);
+            return todoItem;
         }
 
 
@@ -99,17 +103,18 @@ namespace dotnet_api_swagger.Controllers
             Description = "Create a Todo Item",
             OperationId = "CreateTodoItem",
             Tags = new string[] { "Todo", "Create" })]
-        [SwaggerResponse(StatusCodes.Status200OK, "Saved successfully", typeof(ToDoItem))]
+        [SwaggerResponse(StatusCodes.Status201Created, "Created successfully", typeof(ToDoItem))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Bad Request", typeof(ErrorContract))]
         public ActionResult<ToDoItem> Post([FromBody]ToDoItem todoItem)
         {
-            return Ok(todoItem);
+            return todoItem;
         }
 
 
         [Obsolete]
         [HttpDelete("{id}", Name = "DeleteTodoItem")]
         [SwaggerOperation(Summary = "Deletes Todo Item", Description = "Delete a Todo Item", Tags = new string[] { "Todo", "Obsolete" })]
+        [SwaggerResponse(StatusCodes.Status200OK, "Deleted successfully")]
         //[Authorize]
         public IActionResult Delete(int id)
         {
@@ -119,6 +124,7 @@ namespace dotnet_api_swagger.Controllers
         [HttpPut]
         [ApiExplorerSettings(IgnoreApi = true)]
         [SwaggerOperation(Summary = "Saves Todo Item", Description = "Create a Todo Item", Tags = new string[] { "Todo" })]
+        [SwaggerResponse(StatusCodes.Status200OK, "Updated successfully")]
         //[Authorize]
         public IActionResult Put(ToDoItem todoItem)
         {
