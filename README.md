@@ -1,2 +1,2 @@
-# dotnet-api-whiteapp
-A dotnet 5 whiteapp project
+# dotnet-api-swagger
+A dotnet 5 swagger setup project
