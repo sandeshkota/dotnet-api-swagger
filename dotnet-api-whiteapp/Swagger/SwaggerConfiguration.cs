@@ -111,6 +111,7 @@ namespace dotnet_api_swagger.Swagger
                 
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
                 options.SwaggerEndpoint("/swagger/v2/swagger.json", "V2 Docs");
+                options.SwaggerEndpoint("/swagger-ui/custom/swagger.json", "My Custom Docs");
 
                 options.InjectStylesheet("/swagger-ui/custom.css");
 
