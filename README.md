@@ -2,9 +2,12 @@
 A dotnet 5 swagger setup project
 
 ## Three Components
-- Swashbuckle.AspNetCore.Swagger: Exposes Swagger JSON endpoints.
-- Swashbuckle.AspNetCore.SwaggerGen: Generates OpenApiDocument(s) from your routes, controllers and models
-- Swashbuckle.AspNetCore.SwaggerUI: Exposes an embedded version of the swagger-ui
+- Swashbuckle.AspNetCore.Swagger
+  - Exposes Swagger JSON endpoints.
+- Swashbuckle.AspNetCore.SwaggerGen
+  - Generates OpenApiDocument(s) from your routes, controllers and models
+- Swashbuckle.AspNetCore.SwaggerUI
+  - Exposes an embedded version of the swagger-ui
 
 ## API documentation Tools
 - Swagger UI
